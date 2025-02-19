@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: postgres
+      CHROMA_COLLECTION_NAME: ${CHROMA_COLLECTION_NAME}
+      BACKUP_TABLE: ${BACKUP_TABLE}
+      NEW_COLLECTION_NAME: ${NEW_COLLECTION_NAME}
+      CHROMADB_HOST: ${CHROMADB_HOST}
+      CHROMADB_PORT: ${CHROMADB_PORT}
+      CHROMADB_USE_SSL: ${CHROMADB_USE_SSL}
+
+volumes:
+  postgres_data:
