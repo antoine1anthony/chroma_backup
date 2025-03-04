@@ -1,7 +1,7 @@
 import time
 import schedule
 import logging
-from export_import import export_collection_to_postgres, check_collection_health, import_postgres_to_chroma
+from export_import import export_collection_to_postgres, check_collection_health
 
 # Configure logging for the main scheduler as well.
 logging.basicConfig(
@@ -24,4 +24,6 @@ def run_scheduler():
         time.sleep(1)
 
 if __name__ == "__main__":
+    export_collection_to_postgres()
+    check_collection_health()
     run_scheduler()
