@@ -32,7 +32,7 @@ def get_base_url():
     Construct the base URL from the environment configuration.
     """
     scheme = "https" if CHROMADB_USE_SSL else "http"
-    # Omit port if standard.
+
     if (CHROMADB_USE_SSL and CHROMADB_PORT == 443) or (not CHROMADB_USE_SSL and CHROMADB_PORT == 80):
         return f"{scheme}://{CHROMADB_HOST}"
     return f"{scheme}://{CHROMADB_HOST}:{CHROMADB_PORT}"
