@@ -1,5 +1,5 @@
 # Use official Python slim image as the base
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # Prevent Python from writing .pyc files and buffering stdout/stderr
 ENV PYTHONDONTWRITEBYTECODE=1
